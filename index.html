@@ -13,7 +13,8 @@
         h1 { color: var(--azul); font-size: 1.4rem; margin-bottom: 5px; }
         .description { color: var(--gris); font-size: 0.9rem; margin-bottom: 25px; padding: 0 10px; }
         .zone-menu { display: flex; flex-direction: column; gap: 12px; }
-        .btn-zone { background-color: var(--azul); color: white; padding: 16px; border-radius: 12px; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-zone { background-color: var(--azul); color: white; padding: 16px; border-radius: 12px; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s; }
+        .btn-zone:active { transform: scale(0.98); }
         .btn-back { background-color: var(--gris); color: white; padding: 8px 15px; border-radius: 8px; border: none; margin-bottom: 20px; cursor: pointer; }
         .parish-card { background: white; border-radius: 15px; padding: 18px; margin-bottom: 15px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 5px solid var(--rojo); }
         .parish-card h3 { color: var(--azul); margin: 0 0 10px 0; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 5px; }
@@ -21,9 +22,11 @@
         .info-label { font-weight: bold; color: var(--rojo); display: block; margin-bottom: 4px; }
         .badge-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
         .badge { background: #eef2f7; color: var(--azul); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; border: 1px solid #d0dbe5; }
-        .social { margin-top: 30px; display: flex; justify-content: center; gap: 20px; }
-        .social a { color: var(--azul); font-size: 1.8rem; }
+        .social { margin-top: 30px; display: flex; justify-content: center; gap: 30px; }
+        .social a { color: var(--azul); font-size: 2.2rem; text-decoration: none; transition: 0.2s; }
+        .social a:hover { color: var(--rojo); }
         .hidden { display: none; }
+        .footer-text { margin-top: 25px; font-size: 0.75rem; color: var(--gris); }
     </style>
 </head>
 <body>
@@ -32,16 +35,25 @@
     <img src="logo.png" alt="Cáritas San Isidro" class="logo">
     <h1>Servicios Parroquiales</h1>
     <p class="description">Información de servicios, horarios y contacto de las Cáritas parroquiales de la Diócesis de San Isidro.</p>
+    
     <div class="zone-menu">
         <button class="btn-zone" onclick="showZone('Vicente Lopez')">Vicente López</button>
         <button class="btn-zone" onclick="showZone('San Isidro')">San Isidro</button>
         <button class="btn-zone" onclick="showZone('San Fernando')">San Fernando</button>
         <button class="btn-zone" onclick="showZone('Tigre')">Tigre</button>
     </div>
+
     <div class="social">
-        <a href="https://www.instagram.com/caritassanisidro/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://caritassanisidro.org.ar/" target="_blank"><i class="fa-solid fa-globe"></i></a>
+        <!-- LINK INSTAGRAM -->
+        <a href="https://www.instagram.com/caritassanisidro/" target="_blank" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <!-- LINK WEB OFICIAL -->
+        <a href="https://caritassanisidro.org.ar/" target="_blank" title="Web Oficial">
+            <i class="fa-solid fa-globe"></i>
+        </a>
     </div>
+    <p class="footer-text">Cáritas Argentina - Diócesis de San Isidro</p>
 </div>
 
 <div class="container hidden" id="zone-screen">
