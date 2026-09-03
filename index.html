@@ -17,10 +17,10 @@
         .btn-back { background-color: var(--gris); color: white; padding: 8px 15px; border-radius: 8px; border: none; margin-bottom: 20px; cursor: pointer; }
         .parish-card { background: white; border-radius: 15px; padding: 18px; margin-bottom: 15px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 5px solid var(--rojo); }
         .parish-card h3 { color: var(--azul); margin: 0 0 10px 0; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .info-item { margin: 8px 0; font-size: 0.85rem; line-height: 1.3; }
-        .info-label { font-weight: bold; color: var(--rojo); display: block; margin-bottom: 2px; }
-        .badge-container { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
-        .badge { background: #eef2f7; color: var(--azul); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        .info-item { margin: 12px 0; font-size: 0.9rem; line-height: 1.4; }
+        .info-label { font-weight: bold; color: var(--rojo); display: block; margin-bottom: 4px; }
+        .badge-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+        .badge { background: #eef2f7; color: var(--azul); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; border: 1px solid #d0dbe5; }
         .social { margin-top: 30px; display: flex; justify-content: center; gap: 20px; }
         .social a { color: var(--azul); font-size: 1.8rem; }
         .hidden { display: none; }
@@ -29,7 +29,7 @@
 <body>
 
 <div class="container" id="home-screen">
-    <img src="https://caritassanisidro.org.ar/wp-content/uploads/2021/05/logo-caritas-san-isidro.png" alt="Logo" class="logo">
+    <img src="logo.png" alt="Cáritas San Isidro" class="logo">
     <h1>Servicios Parroquiales</h1>
     <p class="description">Información de servicios, horarios y contacto de las Cáritas parroquiales de la Diócesis de San Isidro.</p>
     <div class="zone-menu">
@@ -52,43 +52,43 @@
 
 <script>
     const data = [
-        { zona: "Vicente Lopez", parroquia: "Sagrada Familia", servicios: "Atención inmediata, Ropero, Alimentos", mayores: "Merienda quincenal (2hs)", calle: "Sábados 17 a 18.30hs (ropa/higiene)", horarios: "Sábado 17 a 18.30hs", contacto: "11 2397 5389" },
-        { zona: "San Isidro", parroquia: "Santa Rita", servicios: "Atención inmediata, Ropero, Desayuno, Viandas, Medicamentos, Educación", mayores: "Integrados en desayuno lunes", calle: "Lunes 9hs (Oración, alimentos, abrigo)", horarios: "Lunes a jueves 9.30 a 12.30", contacto: "WhatsApp Secretaría" },
-        { zona: "Tigre", parroquia: "Espíritu Santo", servicios: "Atención inmediata, Ropero, Viandas, Mercadería", mayores: "Mercadería, ropa, abrigo", calle: "Ropa, abrigo, calzado", horarios: "Miércoles y sábados 9 a 12 hs", contacto: "1162482428" },
-        { zona: "Tigre", parroquia: "Medalla Milagrosa", servicios: "Atención inmediata, Mercadería, Escucha", mayores: "Acompañamiento y medicamentos", calle: "Miércoles: Desayuno, ropa, higiene (Cooperazon)", horarios: "Lunes y jueves 9 a 12 hs", contacto: "1160138026" },
-        { zona: "San Fernando", parroquia: "San Pablo", servicios: "Atención inmediata, Ropero, Viandas, Medicamentos", mayores: "No disponible", calle: "Lu y Ju 15-17hs (Viandas, ropa)", horarios: "Lu, Mi y Ju (Tarde)", contacto: "Consultar en Parroquia" },
-        { zona: "San Isidro", parroquia: "Santa Teresita del Niño Jesús", servicios: "Atención inmediata, Ropero, Almuerzo", mayores: "No disponible", calle: "Comedor: Lun, Mie, Vie 11hs", horarios: "Lunes, Miércoles y Viernes (Mañana/Tarde)", contacto: "1154788156" },
-        { zona: "San Isidro", parroquia: "Resurrección del Señor (Martinez)", servicios: "Atención inmediata, Ropero, Escucha, Trabajo Social", mayores: "No disponible", calle: "No disponible", horarios: "Viernes 17-19hs / Sáb 14hs", contacto: "1138770705" },
-        { zona: "Tigre", parroquia: "Perpetuo Socorro", servicios: "Ropero, Mercadería mensual", mayores: "Grupo de abuelos (Lunes 14-16.30)", calle: "No disponible", horarios: "Sáb 10-12 / Mar 14-16", contacto: "1165219846" },
-        { zona: "Vicente Lopez", parroquia: "San Gabriel de la Dolorosa", servicios: "Atención inmediata, Ropero, Desayuno, Viandas", mayores: "No disponible", calle: "No disponible", horarios: "Martes 9 a 11.30 hs", contacto: "Consultar en Parroquia" },
-        { zona: "San Isidro", parroquia: "Sagrado Corazón (Boulogne)", servicios: "Atención inmediata, Ropero, Alimentos", mayores: "No disponible", calle: "No disponible", horarios: "Mar 15-17 / Jue 10-13", contacto: "Consultar en Parroquia" },
-        { zona: "Tigre", parroquia: "San Marcelo", servicios: "Atención inmediata, Ropero, Escucha", mayores: "Pastoral de la Salud (3° Sáb)", calle: "Atención según demanda", horarios: "Lunes 9 a 11 hs", contacto: "1131815111 / 1158531785" },
-        { zona: "San Fernando", parroquia: "Ntra Sra de La Guardia", servicios: "Atención inmediata, Ropero, Cena (Viernes)", mayores: "No disponible", calle: "No disponible", horarios: "Lu, Ma y Ju 9 a 11.30", contacto: "11 3958 9805" },
-        { zona: "San Isidro", parroquia: "Ntra Sra de Lourdes (Beccar)", servicios: "Atención inmediata, Ropero, Desayuno, Viandas", mayores: "No disponible", calle: "Sábados (Desayuno, ropa, calzado)", horarios: "Lu, Mi, Ju (Mañana)", contacto: "1169470378" },
-        { zona: "San Fernando", parroquia: "Ntra Sra de Aranzazu", servicios: "Desayuno, Almuerzo, Duchas, Ropería, Talleres", mayores: "Talleres Santa Ana, Cognitivo, Coro", calle: "Desayunador (Lu-Vi), Almuerzo (Sáb), Duchas (Lun 18h)", horarios: "Lunes a Sábado 8.30 a 12hs", contacto: "4547-1867" },
-        { zona: "Vicente Lopez", parroquia: "Virgen del Carmen", servicios: "Atención inmediata, Ropero, Desayuno, Talleres", mayores: "Talleres (Baile, cuentos) quincenal", calle: "No disponible", horarios: "Martes y Jueves 9 a 12", contacto: "1150110453" },
-        { zona: "Tigre", parroquia: "Ntra Sra de Luján", servicios: "Escucha, Farmacia, Ortopedia, Cena Solidaria", mayores: "Encuentro abuelos (Martes 14.30)", calle: "Ropa y comida disponible", horarios: "Jueves 16.30 a 18.30", contacto: "Consultar en Parroquia" },
-        { zona: "San Fernando", parroquia: "Santa Teresita (Virreyes)", servicios: "Atención inmediata, Ropero, Mercadería", mayores: "Apoyo a Comedor de Abuelos", calle: "Ropa y mercadería (Ma y Ju)", horarios: "Ma y Ju 14-17 / 2do Sáb mes", contacto: "1164842686" },
-        { zona: "San Fernando", parroquia: "Ntra Sra del Carmen (Viviana)", servicios: "Atención inmediata, Ropero", mayores: "Grupo de abuelos (Mie 10hs)", calle: "No disponible", horarios: "Lunes 16 a 18.30", contacto: "1168998986" },
-        { zona: "Tigre", parroquia: "Purísima Concepción", servicios: "Atención inmediata, Ropero, Duchas, Medicamentos, Bolsa Trabajo", mayores: "Tejido y manualidades", calle: "Duchas, ropa, calzado, vianda, enfermería", horarios: "Lunes y Miércoles 9 a 12h", contacto: "1154195064" },
-        { zona: "San Isidro", parroquia: "Espíritu Santo", servicios: "Escucha, Bolsa de Trabajo", mayores: "Té de los abuelos (Último viernes)", calle: "No disponible", horarios: "Miércoles 10 a 12 hs", contacto: "1144952012" },
-        { zona: "Vicente Lopez", parroquia: "La Asunción de la Virgen", servicios: "Viandas, Medicamentos, Merienda", mayores: "Grupo de la Amistad", calle: "Grupo Puentes", horarios: "Martes 16 a 19 hs", contacto: "45136735" },
-        { zona: "San Fernando", parroquia: "Ntra Sra de Itatí", servicios: "Atención inmediata, Ropero, Escucha, Mercadería", mayores: "Desayuno y bolsones (50 abuelos)", calle: "Sedronar, Desayuno, Asistencia psicológica", horarios: "Martes 9 a 12 (y urgencias)", contacto: "1158767806" },
-        { zona: "Tigre", parroquia: "San Juan Bautista", servicios: "Atención inmediata, Ropero, Desayuno, Escucha", mayores: "Grupo Joaquín y Ana (Sábados)", calle: "Atención disponible", horarios: "Viernes 8.30 a 12.30 / Lun roperito", contacto: "1134122901" },
-        { zona: "Vicente Lopez", parroquia: "Santa Rosa de Lima", servicios: "Ropero", mayores: "No disponible", calle: "Ropa y kit de higiene", horarios: "Martes 15 a 17 h", contacto: "1165190358" },
-        { zona: "Tigre", parroquia: "Santísima Trinidad", servicios: "Ropero, Medicamentos, Escucha, Apoyo Escolar", mayores: "No disponible", calle: "No disponible", horarios: "Lu, Mi, Vi 17-19 / Ma, Ju 16.15-17.45", contacto: "1124613005" },
-        { zona: "Vicente Lopez", parroquia: "Santa Maria Magdalena", servicios: "Ropero, Alimentos", mayores: "Espacio Edad Serena", calle: "Bolsa alimentos y ropa (Mie 17-19)", horarios: "Miércoles 17 a 19", contacto: "1165139810" },
-        { zona: "San Isidro", parroquia: "Catedral San Isidro", servicios: "Ropero, Desayuno, Almuerzo, Medicamentos, Jardín Maternal", mayores: "Actividades puntuales", calle: "Canalizado por Secretaría", horarios: "Según Secretaría", contacto: "Tel. Secretaría" },
-        { zona: "Vicente Lopez", parroquia: "Virgen de las Gracias", servicios: "Atención inmediata, Ropero, Medicamentos, Alimentos", mayores: "Miércoles 15 a 18 hs", calle: "No disponible", horarios: "Miércoles 16 a 18 hs", contacto: "1154875393" },
-        { zona: "Vicente Lopez", parroquia: "San Pío X", servicios: "Atención inmediata, Ropero, Merienda", mayores: "Grupo adultos (Viernes 17hs)", calle: "Atención en entrada", horarios: "Jueves 16 a 18 hs", contacto: "1555037232" },
-        { zona: "Vicente Lopez", parroquia: "Ntra Sra de la Guardia Florida", servicios: "Atención inmediata, Ropero", mayores: "No disponible", calle: "Ayuda desde Secretaría", horarios: "Martes 9 a 13 (y variado)", contacto: "1156557287" },
-        { zona: "Vicente Lopez", parroquia: "San Antonio", servicios: "Atención inmediata, Ropero, Medicamentos, Alimentos", mayores: "Grupo Tercera Juventud (2do/4to Sáb 15hs)", calle: "No disponible", horarios: "Lunes y Martes 9 a 11 hs", contacto: "WS 1124020920" },
-        { zona: "San Isidro", parroquia: "Santa María de La Lucila", servicios: "Ropero, Puente Laboral", mayores: "No disponible", calle: "No disponible", horarios: "Mar y Jue 10-12 / Mie 9.30-11.30", contacto: "1159359420" },
-        { zona: "San Isidro", parroquia: "Praga y Santa Rafaela Maria", servicios: "Ropero, Desayuno, Almuerzo, Duchas, Viandas", mayores: "No disponible", calle: "Sábados 8.30 a 12 (Desayuno, duchas, almuerzo)", horarios: "Lu, Mi y Jue (Mañana/Tarde)", contacto: "Consultar en Parroquia" },
-        { zona: "San Isidro", parroquia: "Ntra Sra de Fátima", servicios: "Ropero, Acompañamiento Jóvenes", mayores: "No disponible", calle: "No disponible", horarios: "Sin horario fijo", contacto: "Consultar en Parroquia" },
-        { zona: "Tigre", parroquia: "Ntra Sra del Carmen", servicios: "Ropero, Desayuno, Medicamentos, Escucha", mayores: "No disponible", calle: "No disponible", horarios: "Lu, Mi, Vi 9 a 12", contacto: "1144387045" },
-        { zona: "San Isidro", parroquia: "San José Obrero", servicios: "Atención inmediata, Ropero, Alimentos", mayores: "No disponible", calle: "No disponible", horarios: "Mie 15-18 / Sáb 9-13", contacto: "1169805331" },
-        { zona: "Tigre", parroquia: "San Cayetano", servicios: "Atención inmediata, Ropero", mayores: "No disponible", calle: "No disponible", horarios: "Según necesidad", contacto: "1123737023" }
+        { zona: "Vicente Lopez", parroquia: "Sagrada Familia", servicios: "Atención inmediata, Ropero, Alimentos, Atención a Mayores", horarios: "Sábado 17 a 18.30hs", contacto: "11 2397 5389" },
+        { zona: "San Isidro", parroquia: "Santa Rita", servicios: "Atención inmediata, Ropero, Desayuno, Viandas, Medicamentos, Educación, Atención a Mayores", horarios: "Lunes a jueves 9.30 a 12.30", contacto: "WhatsApp Secretaría" },
+        { zona: "Tigre", parroquia: "Espíritu Santo", servicios: "Atención inmediata, Ropero, Viandas, Mercadería, Atención a Mayores", horarios: "Miércoles y sábados 9 a 12 hs", contacto: "1162482428" },
+        { zona: "Tigre", parroquia: "Medalla Milagrosa", servicios: "Atención inmediata, Mercadería, Escucha, Atención a Mayores", horarios: "Lunes y jueves 9 a 12 hs", contacto: "1160138026" },
+        { zona: "San Fernando", parroquia: "San Pablo", servicios: "Atención inmediata, Ropero, Viandas, Medicamentos", horarios: "Lunes 15-19h, Miércoles 17-19h, Jueves 15-19h", contacto: "Consultar en Parroquia" },
+        { zona: "San Isidro", parroquia: "Santa Teresita del Niño Jesús", servicios: "Atención inmediata, Ropero, Almuerzo", horarios: "Lunes, Miércoles y Viernes (Mañana/Tarde)", contacto: "1154788156" },
+        { zona: "San Isidro", parroquia: "Resurrección del Señor (Martinez)", servicios: "Atención inmediata, Ropero, Escucha, Trabajo Social", horarios: "Viernes 17-19hs / Sáb 14hs", contacto: "1138770705" },
+        { zona: "Tigre", parroquia: "Perpetuo Socorro", servicios: "Ropero, Mercadería mensual, Atención a Mayores", horarios: "Sáb 10-12 / Mar 14-16", contacto: "1165219846" },
+        { zona: "Vicente Lopez", parroquia: "San Gabriel de la Dolorosa", servicios: "Atención inmediata, Ropero, Desayuno, Viandas", horarios: "Martes 9 a 11.30 hs", contacto: "Consultar en Parroquia" },
+        { zona: "San Isidro", parroquia: "Sagrado Corazón (Boulogne)", servicios: "Atención inmediata, Ropero, Alimentos", horarios: "Mar 15-17 / Jue 10-13", contacto: "Consultar en Parroquia" },
+        { zona: "Tigre", parroquia: "San Marcelo", servicios: "Atención inmediata, Ropero, Escucha, Atención a Mayores", horarios: "Lunes 9 a 11 hs", contacto: "1131815111 / 1158531785" },
+        { zona: "San Fernando", parroquia: "Ntra Sra de La Guardia", servicios: "Atención inmediata, Ropero, Cena (Viernes)", horarios: "Lu, Ma y Ju 9 a 11.30", contacto: "11 3958 9805" },
+        { zona: "San Isidro", parroquia: "Ntra Sra de Lourdes (Beccar)", servicios: "Atención inmediata, Ropero, Desayuno, Viandas", horarios: "Lu, Mi, Ju (Mañana)", contacto: "1169470378" },
+        { zona: "San Fernando", parroquia: "Ntra Sra de Aranzazu", servicios: "Desayuno, Almuerzo, Duchas, Ropería, Talleres, Atención a Mayores", horarios: "Lunes a Sábado 8.30 a 12hs", contacto: "4547-1867" },
+        { zona: "Vicente Lopez", parroquia: "Virgen del Carmen", servicios: "Atención inmediata, Ropero, Desayuno, Talleres, Atención a Mayores", horarios: "Martes y Jueves 9 a 12", contacto: "1150110453" },
+        { zona: "Tigre", parroquia: "Ntra Sra de Luján", servicios: "Escucha, Farmacia, Ortopedia, Cena Solidaria, Atención a Mayores", horarios: "Jueves 16.30 a 18.30", contacto: "Consultar en Parroquia" },
+        { zona: "San Fernando", parroquia: "Santa Teresita (Virreyes)", servicios: "Atención inmediata, Ropero, Mercadería, Atención a Mayores", horarios: "Ma y Ju 14-17 / 2do Sáb mes", contacto: "1164842686" },
+        { zona: "San Fernando", parroquia: "Ntra Sra del Carmen", servicios: "Atención inmediata, Ropero, Atención a Mayores", horarios: "Lunes 16 a 18.30", contacto: "1168998986" },
+        { zona: "Tigre", parroquia: "Purísima Concepción", servicios: "Atención inmediata, Ropero, Duchas, Medicamentos, Bolsa Trabajo, Atención a Mayores", horarios: "Lunes y Miércoles 9 a 12h", contacto: "1154195064" },
+        { zona: "San Isidro", parroquia: "Espíritu Santo", servicios: "Escucha, Bolsa de Trabajo, Atención a Mayores", horarios: "Miércoles 10 a 12 hs", contacto: "1144952012" },
+        { zona: "Vicente Lopez", parroquia: "La Asunción de la Virgen", servicios: "Viandas, Medicamentos, Merienda, Atención a Mayores", horarios: "Martes 16 a 19 hs", contacto: "45136735" },
+        { zona: "San Fernando", parroquia: "Ntra Sra de Itatí", servicios: "Atención inmediata, Ropero, Escucha, Mercadería, Atención a Mayores", horarios: "Martes 9 a 12 (y urgencias)", contacto: "1158767806" },
+        { zona: "Tigre", parroquia: "San Juan Bautista", servicios: "Atención inmediata, Ropero, Desayuno, Escucha, Atención a Mayores", horarios: "Viernes 8.30 a 12.30 / Lun roperito", contacto: "1134122901" },
+        { zona: "Vicente Lopez", parroquia: "Santa Rosa de Lima", servicios: "Ropero", horarios: "Martes 15 a 17 h", contacto: "1165190358" },
+        { zona: "Tigre", parroquia: "Santísima Trinidad", servicios: "Ropero, Medicamentos, Escucha, Apoyo Escolar", horarios: "Lu, Mi, Vi 17-19 / Ma, Ju 16.15-17.45", contacto: "1124613005" },
+        { zona: "Vicente Lopez", parroquia: "Santa Maria Magdalena", servicios: "Ropero, Alimentos, Atención a Mayores", horarios: "Miércoles 17 a 19", contacto: "1165139810" },
+        { zona: "San Isidro", parroquia: "Catedral San Isidro", servicios: "Ropero, Desayuno, Almuerzo, Medicamentos, Jardín Maternal", horarios: "Según Secretaría", contacto: "Tel. Secretaría" },
+        { zona: "Vicente Lopez", parroquia: "Virgen de las Gracias", servicios: "Atención inmediata, Ropero, Medicamentos, Alimentos, Atención a Mayores", horarios: "Miércoles 16 a 18 hs", contacto: "1154875393" },
+        { zona: "Vicente Lopez", parroquia: "San Pío X", servicios: "Atención inmediata, Ropero, Merienda, Atención a Mayores", horarios: "Jueves de 16 a 18 hs", contacto: "1555037232" },
+        { zona: "Vicente Lopez", parroquia: "Ntra Sra de la Guardia Florida", servicios: "Atención inmediata, Ropero", horarios: "Martes de 9 a 13", contacto: "1156557287" },
+        { zona: "Vicente Lopez", parroquia: "San Antonio", servicios: "Atención inmediata, Ropero, Medicamentos, Alimentos, Atención a Mayores", horarios: "Lunes y Martes 9 a 11 hs", contacto: "WS 1124020920" },
+        { zona: "San Isidro", parroquia: "Santa María de La Lucila", servicios: "Ropero, Puente Laboral", horarios: "Mar y Jue 10-12 / Mie 9.30-11.30", contacto: "1159359420" },
+        { zona: "San Isidro", parroquia: "Praga y Santa Rafaela Maria", servicios: "Ropero, Desayuno, Almuerzo, Duchas, Viandas", horarios: "Mañana/Tarde (Feria Lu, Mi, Ju)", contacto: "Consultar en Parroquia" },
+        { zona: "San Isidro", parroquia: "Ntra Sra de Fátima", servicios: "Ropero, Acompañamiento Jóvenes", horarios: "Sin horario fijo", contacto: "Consultar en Parroquia" },
+        { zona: "Tigre", parroquia: "Ntra Sra del Carmen (Tigre)", servicios: "Ropero, Desayuno, Medicamentos, Escucha", horarios: "Lu, Mi, Vi 9 a 12", contacto: "1144387045" },
+        { zona: "San Isidro", parroquia: "San José Obrero", servicios: "Atención inmediata, Ropero, Alimentos", horarios: "Mie 15-18 / Sáb 9-13", contacto: "1169805331" },
+        { zona: "Tigre", parroquia: "San Cayetano", servicios: "Atención inmediata, Ropero", horarios: "Según necesidad", contacto: "1123737023" }
     ];
 
     function showZone(zoneName) {
@@ -103,11 +103,18 @@
             card.className = 'parish-card';
             card.innerHTML = `
                 <h3>${p.parroquia}</h3>
-                <div class="info-item"><span class="info-label">Servicios:</span><div class="badge-container">${p.servicios.split(',').map(s => `<span class="badge">${s.trim()}</span>`).join('')}</div></div>
-                <div class="info-item"><span class="info-label"><i class="fa-solid fa-clock"></i> Horarios:</span>${p.horarios}</div>
-                <div class="info-item"><span class="info-label"><i class="fa-solid fa-person-cane"></i> Mayores:</span>${p.mayores}</div>
-                <div class="info-item"><span class="info-label"><i class="fa-solid fa-person-shelter"></i> Calle:</span>${p.calle}</div>
-                <div class="info-item"><span class="info-label"><i class="fa-solid fa-phone"></i> Contacto:</span>${p.contacto}</div>
+                <div class="info-item">
+                    <span class="info-label">Servicios ofrecidos:</span>
+                    <div class="badge-container">${p.servicios.split(',').map(s => `<span class="badge">${s.trim()}</span>`).join('')}</div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label"><i class="fa-solid fa-clock"></i> Horarios de atención:</span>
+                    ${p.horarios}
+                </div>
+                <div class="info-item">
+                    <span class="info-label"><i class="fa-solid fa-phone"></i> Contacto:</span>
+                    ${p.contacto}
+                </div>
             `;
             listDiv.appendChild(card);
         });
