@@ -12,36 +12,27 @@
         .logo { width: 160px; margin-bottom: 10px; }
         h1 { color: var(--azul); font-size: 1.4rem; margin-bottom: 5px; }
         .description { color: var(--gris); font-size: 0.9rem; margin-bottom: 25px; padding: 0 10px; }
-        
-        /* Botones Principales */
         .zone-menu { display: flex; flex-direction: column; gap: 12px; }
         .btn-zone { background-color: var(--azul); color: white; padding: 16px; border-radius: 12px; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        
-        /* Buscador */
         .search-container { position: sticky; top: 10px; z-index: 100; background: white; padding: 10px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .search-container i { color: var(--gris); }
         .search-input { border: none; width: 100%; outline: none; font-size: 1rem; }
-        
-        /* Filtro activo info */
         .filter-info { font-size: 0.8rem; color: var(--rojo); margin-bottom: 10px; font-weight: bold; display: none; cursor: pointer; text-decoration: underline; }
-
         .btn-back { background-color: var(--gris); color: white; padding: 8px 15px; border-radius: 8px; border: none; margin-bottom: 20px; cursor: pointer; }
-        
-        /* Tarjetas */
         .parish-card { background: white; border-radius: 15px; padding: 18px; margin-bottom: 15px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 5px solid var(--rojo); }
         .parish-card h3 { color: var(--azul); margin: 0 0 10px 0; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 5px; }
         .info-item { margin: 12px 0; font-size: 0.9rem; line-height: 1.4; }
         .info-label { font-weight: bold; color: var(--rojo); display: block; margin-bottom: 4px; }
-        
-        /* Etiquetas de Servicio */
         .badge-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
-        .badge { background: #eef2f7; color: var(--azul); padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: bold; border: 1px solid #d0dbe5; cursor: pointer; transition: 0.2s; }
-        .badge:hover { background: var(--azul); color: white; }
+        .badge { background: #eef2f7; color: var(--azul); padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: bold; border: 1px solid #d0dbe5; cursor: pointer; }
         .badge.active { background: var(--rojo); color: white; border-color: var(--rojo); }
+        
+        /* Estilos de links de contacto */
+        .contact-link { display: inline-flex; align-items: center; gap: 8px; background: #f0f7ff; color: var(--azul); padding: 8px 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; margin-top: 5px; border: 1px solid #cce0f5; }
+        .contact-link i { font-size: 1.1rem; }
+        .contact-link.wa { color: #25d366; background: #e8f9ee; border-color: #c7e9d2; }
 
         .social { margin-top: 30px; display: flex; justify-content: center; gap: 30px; }
-        .social a { color: var(--azul); font-size: 2.2rem; transition: 0.2s; text-decoration: none; }
-        .social a:hover { color: var(--rojo); }
+        .social a { color: var(--azul); font-size: 2.2rem; text-decoration: none; }
         .hidden { display: none; }
     </style>
 </head>
@@ -51,33 +42,28 @@
     <img src="Logo%20Caritas%20SI.jpg" alt="Cáritas San Isidro" class="logo">
     <h1>Servicios Parroquiales</h1>
     <p class="description">Información de servicios, horarios y contacto de las Cáritas parroquiales de la Diócesis de San Isidro.</p>
-    
     <div class="zone-menu">
         <button class="btn-zone" onclick="showZone('Vicente Lopez')">Vicente López</button>
         <button class="btn-zone" onclick="showZone('San Isidro')">San Isidro</button>
         <button class="btn-zone" onclick="showZone('San Fernando')">San Fernando</button>
         <button class="btn-zone" onclick="showZone('Tigre')">Tigre</button>
     </div>
-
     <div class="social">
-        <a href="https://wa.me/5491151276175" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/caritassanisidro/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://caritassanisidro.org.ar/" target="_blank" title="Web Oficial"><i class="fa-solid fa-globe"></i></a>
+        <a href="https://wa.me/5491151276175" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/caritassanisidro/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://caritassanisidro.org.ar/" target="_blank"><i class="fa-solid fa-globe"></i></a>
     </div>
 </div>
 
 <div class="container hidden" id="zone-screen">
-    <button class="btn-back" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i> Volver al Inicio</button>
-    
+    <button class="btn-back" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i> Volver</button>
     <div class="search-container">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" id="searchInput" class="search-input" placeholder="Buscar parroquia..." oninput="applyFilters()">
     </div>
-
     <div id="filterIndicator" class="filter-info" onclick="clearServiceFilter()">
-        Mostrando solo: <span id="activeFilterName"></span> (Toca para quitar filtro)
+        Mostrando solo: <span id="activeFilterName"></span> (Tocar para quitar)
     </div>
-
     <h2 id="zone-title" style="color: var(--azul);"></h2>
     <div id="parish-list"></div>
 </div>
@@ -88,21 +74,21 @@
 
     const data = [
         { zona: "Vicente Lopez", parroquia: "Sagrada Familia", servicios: "Atención inmediata, Ropero, Alimentos, Atención a Mayores", horarios: "Sábado 17 a 18.30hs", contacto: "11 2397 5389" },
-        { zona: "San Isidro", parroquia: "Santa Rita", servicios: "Atención inmediata, Ropero, Desayuno, Viandas, Medicamentos, Educación, Atención a Mayores", horarios: "Lunes a jueves 9.30 a 12.30", contacto: "WhatsApp Secretaría" },
+        { zona: "San Isidro", parroquia: "Santa Rita", servicios: "Atención inmediata, Ropero, Desayuno, Viandas, Medicamentos, Educación, Atención a Mayores", horarios: "Lunes a jueves 9.30 a 12.30", contacto: "11 5145 4938" },
         { zona: "Tigre", parroquia: "Espíritu Santo", servicios: "Atención inmediata, Ropero, Viandas, Mercadería, Atención a Mayores", horarios: "Miércoles y sábados 9 a 12 hs", contacto: "1162482428" },
         { zona: "Tigre", parroquia: "Medalla Milagrosa", servicios: "Atención inmediata, Mercadería, Escucha, Atención a Mayores", horarios: "Lunes y jueves 9 a 12 hs", contacto: "1160138026" },
-        { zona: "San Fernando", parroquia: "San Pablo", servicios: "Atención inmediata, Ropero, Viandas, Medicamentos", horarios: "Lunes 15-19h, Miércoles 17-19h, Jueves 15-19h", contacto: "Consultar en Parroquia" },
-        { zona: "San Isidro", parroquia: "Santa Teresita del Niño Jesús", servicios: "Atención inmediata, Ropero, Almuerzo", horarios: "Lunes, Miércoles y Viernes (Mañana/Tarde)", contacto: "1154788156" },
+        { zona: "San Fernando", parroquia: "San Pablo", servicios: "Atención inmediata, Ropero, Viandas, Medicamentos", horarios: "Lu, Mi, Ju (Tarde)", contacto: "4580-0455" },
+        { zona: "San Isidro", parroquia: "Santa Teresita del Niño Jesús", servicios: "Atención inmediata, Ropero, Almuerzo", horarios: "Lun, Mie, Vie (Mañana/Tarde)", contacto: "1154788156" },
         { zona: "San Isidro", parroquia: "Resurrección del Señor (Martinez)", servicios: "Atención inmediata, Ropero, Escucha, Trabajo Social", horarios: "Viernes 17-19hs / Sáb 14hs", contacto: "1138770705" },
         { zona: "Tigre", parroquia: "Perpetuo Socorro", servicios: "Ropero, Mercadería mensual, Atención a Mayores", horarios: "Sáb 10-12 / Mar 14-16", contacto: "1165219846" },
-        { zona: "Vicente Lopez", parroquia: "San Gabriel de la Dolorosa", servicios: "Atención inmediata, Ropero, Desayuno, Viandas", horarios: "Martes 9 a 11.30 hs", contacto: "Consultar en Parroquia" },
-        { zona: "San Isidro", parroquia: "Sagrado Corazón (Boulogne)", servicios: "Atención inmediata, Ropero, Alimentos", horarios: "Mar 15-17 / Jue 10-13", contacto: "Consultar en Parroquia" },
-        { zona: "Tigre", parroquia: "San Marcelo", servicios: "Atención inmediata, Ropero, Escucha, Atención a Mayores", horarios: "Lunes 9 a 11 hs", contacto: "1131815111 / 1158531785" },
+        { zona: "Vicente Lopez", parroquia: "San Gabriel de la Dolorosa", servicios: "Atención inmediata, Ropero, Desayuno, Viandas", horarios: "Martes 9 a 11.30 hs", contacto: "4513-6731" },
+        { zona: "San Isidro", parroquia: "Sagrado Corazón (Boulogne)", servicios: "Atención inmediata, Ropero, Alimentos", horarios: "Mar 15-17 / Jue 10-13", contacto: "011 4766-3555" },
+        { zona: "Tigre", parroquia: "San Marcelo", servicios: "Atención inmediata, Ropero, Escucha, Atención a Mayores", horarios: "Lunes 9 a 11 hs", contacto: "1131815111, 1158531785" },
         { zona: "San Fernando", parroquia: "Ntra Sra de La Guardia", servicios: "Atención inmediata, Ropero, Cena (Viernes)", horarios: "Lu, Ma y Ju 9 a 11.30", contacto: "11 3958 9805" },
         { zona: "San Isidro", parroquia: "Ntra Sra de Lourdes (Beccar)", servicios: "Atención inmediata, Ropero, Desayuno, Viandas", horarios: "Lu, Mi, Ju (Mañana)", contacto: "1169470378" },
         { zona: "San Fernando", parroquia: "Ntra Sra de Aranzazu", servicios: "Desayuno, Almuerzo, Duchas, Ropería, Talleres, Atención a Mayores", horarios: "Lunes a Sábado 8.30 a 12hs", contacto: "4547-1867" },
         { zona: "Vicente Lopez", parroquia: "Virgen del Carmen", servicios: "Atención inmediata, Ropero, Desayuno, Talleres, Atención a Mayores", horarios: "Martes y Jueves 9 a 12", contacto: "1150110453" },
-        { zona: "Tigre", parroquia: "Ntra Sra de Luján", servicios: "Escucha, Farmacia, Ortopedia, Cena Solidaria, Atención a Mayores", horarios: "Jueves 16.30 a 18.30", contacto: "Consultar en Parroquia" },
+        { zona: "Tigre", parroquia: "Ntra Sra de Luján", servicios: "Escucha, Farmacia, Ortopedia, Cena Solidaria, Atención a Mayores", horarios: "Jueves 16.30 a 18.30", contacto: "011 5099 5081" },
         { zona: "San Fernando", parroquia: "Santa Teresita (Virreyes)", servicios: "Atención inmediata, Ropero, Mercadería, Atención a Mayores", horarios: "Ma y Ju 14-17 / 2do Sáb mes", contacto: "1164842686" },
         { zona: "San Fernando", parroquia: "Ntra Sra del Carmen", servicios: "Atención inmediata, Ropero, Atención a Mayores", horarios: "Lunes 16 a 18.30", contacto: "1168998986" },
         { zona: "Tigre", parroquia: "Purísima Concepción", servicios: "Atención inmediata, Ropero, Duchas, Medicamentos, Bolsa Trabajo, Atención a Mayores", horarios: "Lunes y Miércoles 9 a 12h", contacto: "1154195064" },
@@ -113,14 +99,14 @@
         { zona: "Vicente Lopez", parroquia: "Santa Rosa de Lima", servicios: "Ropero", horarios: "Martes 15 a 17 h", contacto: "1165190358" },
         { zona: "Tigre", parroquia: "Santísima Trinidad", servicios: "Ropero, Medicamentos, Escucha, Apoyo Escolar", horarios: "Lu, Mi, Vi 17-19 / Ma, Ju 16.15-17.45", contacto: "1124613005" },
         { zona: "Vicente Lopez", parroquia: "Santa Maria Magdalena", servicios: "Ropero, Alimentos, Atención a Mayores", horarios: "Miércoles 17 a 19", contacto: "1165139810" },
-        { zona: "San Isidro", parroquia: "Catedral San Isidro", servicios: "Ropero, Desayuno, Almuerzo, Medicamentos, Jardín Maternal", horarios: "Según Secretaría", contacto: "Tel. Secretaría" },
+        { zona: "San Isidro", parroquia: "Catedral San Isidro", servicios: "Ropero, Desayuno, Almuerzo, Medicamentos, Jardín Maternal", horarios: "Según Secretaría", contacto: "4963-8295, 11 3123 4117" },
         { zona: "Vicente Lopez", parroquia: "Virgen de las Gracias", servicios: "Atención inmediata, Ropero, Medicamentos, Alimentos, Atención a Mayores", horarios: "Miércoles 16 a 18 hs", contacto: "1154875393" },
         { zona: "Vicente Lopez", parroquia: "San Pío X", servicios: "Atención inmediata, Ropero, Merienda, Atención a Mayores", horarios: "Jueves de 16 a 18 hs", contacto: "1555037232" },
         { zona: "Vicente Lopez", parroquia: "Ntra Sra de la Guardia Florida", servicios: "Atención inmediata, Ropero", horarios: "Martes de 9 a 13", contacto: "1156557287" },
-        { zona: "Vicente Lopez", parroquia: "San Antonio", servicios: "Atención inmediata, Ropero, Medicamentos, Alimentos, Atención a Mayores", horarios: "Lunes y Martes 9 a 11 hs", contacto: "WS 1124020920" },
+        { zona: "Vicente Lopez", parroquia: "San Antonio", servicios: "Atención inmediata, Ropero, Medicamentos, Alimentos, Atención a Mayores", horarios: "Lunes y Martes 9 a 11 hs", contacto: "1124020920" },
         { zona: "San Isidro", parroquia: "Santa María de La Lucila", servicios: "Ropero, Puente Laboral", horarios: "Mar y Jue 10-12 / Mie 9.30-11.30", contacto: "1159359420" },
-        { zona: "San Isidro", parroquia: "Praga y Santa Rafaela Maria", servicios: "Ropero, Desayuno, Almuerzo, Duchas, Viandas", horarios: "Mañana/Tarde (Feria Lu, Mi, Ju)", contacto: "Consultar en Parroquia" },
-        { zona: "San Isidro", parroquia: "Ntra Sra de Fátima", servicios: "Ropero, Acompañamiento Jóvenes", horarios: "Sin horario fijo", contacto: "Consultar en Parroquia" },
+        { zona: "San Isidro", parroquia: "Praga y Santa Rafaela Maria", servicios: "Ropero, Desayuno, Almuerzo, Duchas, Viandas", horarios: "Mañana/Tarde (Feria Lu, Mi, Ju)", contacto: "011 4508-8513" },
+        { zona: "San Isidro", parroquia: "Ntra Sra de Fátima", servicios: "Ropero, Acompañamiento Jóvenes", horarios: "Sin horario fijo", contacto: "011 4508-8502" },
         { zona: "Tigre", parroquia: "Ntra Sra del Carmen (Tigre)", servicios: "Ropero, Desayuno, Medicamentos, Escucha", horarios: "Lu, Mi, Vi 9 a 12", contacto: "1144387045" },
         { zona: "San Isidro", parroquia: "San José Obrero", servicios: "Atención inmediata, Ropero, Alimentos", horarios: "Mie 15-18 / Sáb 9-13", contacto: "1169805331" },
         { zona: "Tigre", parroquia: "San Cayetano", servicios: "Atención inmediata, Ropero", horarios: "Según necesidad", contacto: "1123737023" }
@@ -133,7 +119,6 @@
         document.getElementById('home-screen').classList.add('hidden');
         document.getElementById('zone-screen').classList.remove('hidden');
         document.getElementById('zone-title').innerText = "Zona: " + zoneName;
-        document.getElementById('filterIndicator').style.display = "none";
         applyFilters();
     }
 
@@ -149,11 +134,6 @@
             return matchesZone && matchesSearch && matchesService;
         });
 
-        if (filtered.length === 0) {
-            listDiv.innerHTML = '<p style="text-align:center; padding:20px; color:var(--gris);">No se encontraron resultados.</p>';
-            return;
-        }
-
         filtered.forEach(p => {
             const card = document.createElement('div');
             card.className = 'parish-card';
@@ -163,26 +143,49 @@
                     <span class="info-label">Servicios: (Toca uno para filtrar)</span>
                     <div class="badge-container">${p.servicios.split(',').map(s => {
                         const sClean = s.trim();
-                        const activeClass = selectedService === sClean ? 'active' : '';
-                        return `<span class="badge ${activeClass}" onclick="setServiceFilter('${sClean}')">${sClean}</span>`;
+                        return `<span class="badge ${selectedService === sClean ? 'active' : ''}" onclick="setServiceFilter('${sClean}')">${sClean}</span>`;
                     }).join('')}</div>
                 </div>
                 <div class="info-item"><span class="info-label"><i class="fa-solid fa-clock"></i> Horarios:</span>${p.horarios}</div>
-                <div class="info-item"><span class="info-label"><i class="fa-solid fa-phone"></i> Contacto:</span>${p.contacto}</div>
+                <div class="info-item">
+                    <span class="info-label"><i class="fa-solid fa-address-book"></i> Contacto:</span>
+                    ${renderContactLinks(p.contacto)}
+                </div>
             `;
             listDiv.appendChild(card);
         });
     }
 
+    function renderContactLinks(contactoStr) {
+        // Separa si hay varios números (por coma o "y")
+        const numbers = contactoStr.split(/[,y]/);
+        return numbers.map(num => {
+            const cleanNum = num.trim().replace(/[^0-9+]/g, '');
+            // Lógica para detectar si es celular (Argentina)
+            // Si empieza con 11, 15, o 549, o tiene más de 9 dígitos después del 011
+            const isMobile = cleanNum.includes("11") || cleanNum.includes("15") || cleanNum.startsWith("549");
+            
+            if (isMobile) {
+                // Formatear para WhatsApp (549 + área + número)
+                let waNum = cleanNum;
+                if (!waNum.startsWith("549")) {
+                    if (waNum.startsWith("0")) waNum = waNum.substring(1);
+                    if (waNum.startsWith("15")) waNum = "11" + waNum.substring(2);
+                    waNum = "549" + waNum;
+                }
+                return `<a href="https://wa.me/${waNum}" class="contact-link wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>`;
+            } else {
+                // Formatear para Llamada Fija
+                return `<a href="tel:${cleanNum}" class="contact-link"><i class="fa-solid fa-phone"></i> Llamar</a>`;
+            }
+        }).join(' ');
+    }
+
     function setServiceFilter(service) {
-        if (selectedService === service) {
-            clearServiceFilter();
-        } else {
-            selectedService = service;
-            document.getElementById('activeFilterName').innerText = service;
-            document.getElementById('filterIndicator').style.display = "block";
-            applyFilters();
-        }
+        selectedService = (selectedService === service) ? null : service;
+        document.getElementById('filterIndicator').style.display = selectedService ? "block" : "none";
+        document.getElementById('activeFilterName').innerText = selectedService || "";
+        applyFilters();
     }
 
     function clearServiceFilter() {
