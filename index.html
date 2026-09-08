@@ -12,27 +12,43 @@
         .logo { width: 160px; margin-bottom: 10px; }
         h1 { color: var(--azul); font-size: 1.4rem; margin-bottom: 5px; }
         .description { color: var(--gris); font-size: 0.9rem; margin-bottom: 25px; padding: 0 10px; }
+        
+        /* Botones Principales */
         .zone-menu { display: flex; flex-direction: column; gap: 12px; }
-        .btn-zone { background-color: var(--azul); color: white; padding: 16px; border-radius: 12px; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s; }
-        .btn-zone:active { transform: scale(0.98); }
+        .btn-zone { background-color: var(--azul); color: white; padding: 16px; border-radius: 12px; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        /* Buscador */
+        .search-container { position: sticky; top: 10px; z-index: 100; background: white; padding: 10px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .search-container i { color: var(--gris); }
+        .search-input { border: none; width: 100%; outline: none; font-size: 1rem; }
+        
+        /* Filtro activo info */
+        .filter-info { font-size: 0.8rem; color: var(--rojo); margin-bottom: 10px; font-weight: bold; display: none; cursor: pointer; text-decoration: underline; }
+
         .btn-back { background-color: var(--gris); color: white; padding: 8px 15px; border-radius: 8px; border: none; margin-bottom: 20px; cursor: pointer; }
+        
+        /* Tarjetas */
         .parish-card { background: white; border-radius: 15px; padding: 18px; margin-bottom: 15px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 5px solid var(--rojo); }
         .parish-card h3 { color: var(--azul); margin: 0 0 10px 0; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 5px; }
         .info-item { margin: 12px 0; font-size: 0.9rem; line-height: 1.4; }
         .info-label { font-weight: bold; color: var(--rojo); display: block; margin-bottom: 4px; }
+        
+        /* Etiquetas de Servicio */
         .badge-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
-        .badge { background: #eef2f7; color: var(--azul); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; border: 1px solid #d0dbe5; }
+        .badge { background: #eef2f7; color: var(--azul); padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: bold; border: 1px solid #d0dbe5; cursor: pointer; transition: 0.2s; }
+        .badge:hover { background: var(--azul); color: white; }
+        .badge.active { background: var(--rojo); color: white; border-color: var(--rojo); }
+
         .social { margin-top: 30px; display: flex; justify-content: center; gap: 30px; }
-        .social a { color: var(--azul); font-size: 2.2rem; text-decoration: none; transition: 0.2s; }
+        .social a { color: var(--azul); font-size: 2.2rem; transition: 0.2s; text-decoration: none; }
         .social a:hover { color: var(--rojo); }
         .hidden { display: none; }
-        .footer-text { margin-top: 25px; font-size: 0.75rem; color: var(--gris); }
     </style>
 </head>
 <body>
 
 <div class="container" id="home-screen">
-<img src="Logo%20Caritas%20SI.jpg" alt="Cáritas San Isidro" class="logo">
+    <img src="Logo%20Caritas%20SI.jpg" alt="Cáritas San Isidro" class="logo">
     <h1>Servicios Parroquiales</h1>
     <p class="description">Información de servicios, horarios y contacto de las Cáritas parroquiales de la Diócesis de San Isidro.</p>
     
@@ -44,25 +60,32 @@
     </div>
 
     <div class="social">
-        <!-- LINK INSTAGRAM -->
-        <a href="https://www.instagram.com/caritassanisidro/" target="_blank" title="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
-        <!-- LINK WEB OFICIAL -->
-        <a href="https://caritassanisidro.org.ar/" target="_blank" title="Web Oficial">
-            <i class="fa-solid fa-globe"></i>
-        </a>
+        <a href="https://wa.me/5491151276175" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/caritassanisidro/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://caritassanisidro.org.ar/" target="_blank" title="Web Oficial"><i class="fa-solid fa-globe"></i></a>
     </div>
-    <p class="footer-text">Cáritas Argentina - Diócesis de San Isidro</p>
 </div>
 
 <div class="container hidden" id="zone-screen">
-    <button class="btn-back" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+    <button class="btn-back" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i> Volver al Inicio</button>
+    
+    <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar parroquia..." oninput="applyFilters()">
+    </div>
+
+    <div id="filterIndicator" class="filter-info" onclick="clearServiceFilter()">
+        Mostrando solo: <span id="activeFilterName"></span> (Toca para quitar filtro)
+    </div>
+
     <h2 id="zone-title" style="color: var(--azul);"></h2>
     <div id="parish-list"></div>
 </div>
 
 <script>
+    let currentZone = "";
+    let selectedService = null;
+
     const data = [
         { zona: "Vicente Lopez", parroquia: "Sagrada Familia", servicios: "Atención inmediata, Ropero, Alimentos, Atención a Mayores", horarios: "Sábado 17 a 18.30hs", contacto: "11 2397 5389" },
         { zona: "San Isidro", parroquia: "Santa Rita", servicios: "Atención inmediata, Ropero, Desayuno, Viandas, Medicamentos, Educación, Atención a Mayores", horarios: "Lunes a jueves 9.30 a 12.30", contacto: "WhatsApp Secretaría" },
@@ -104,34 +127,70 @@
     ];
 
     function showZone(zoneName) {
+        currentZone = zoneName;
+        selectedService = null;
+        document.getElementById('searchInput').value = "";
         document.getElementById('home-screen').classList.add('hidden');
         document.getElementById('zone-screen').classList.remove('hidden');
-        document.getElementById('zone-title').innerText = zoneName;
+        document.getElementById('zone-title').innerText = "Zona: " + zoneName;
+        document.getElementById('filterIndicator').style.display = "none";
+        applyFilters();
+    }
+
+    function applyFilters() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         const listDiv = document.getElementById('parish-list');
         listDiv.innerHTML = '';
-        const filtered = data.filter(p => p.zona === zoneName);
+
+        const filtered = data.filter(p => {
+            const matchesZone = p.zona === currentZone;
+            const matchesSearch = p.parroquia.toLowerCase().includes(searchTerm);
+            const matchesService = selectedService ? p.servicios.includes(selectedService) : true;
+            return matchesZone && matchesSearch && matchesService;
+        });
+
+        if (filtered.length === 0) {
+            listDiv.innerHTML = '<p style="text-align:center; padding:20px; color:var(--gris);">No se encontraron resultados.</p>';
+            return;
+        }
+
         filtered.forEach(p => {
             const card = document.createElement('div');
             card.className = 'parish-card';
             card.innerHTML = `
                 <h3>${p.parroquia}</h3>
                 <div class="info-item">
-                    <span class="info-label">Servicios ofrecidos:</span>
-                    <div class="badge-container">${p.servicios.split(',').map(s => `<span class="badge">${s.trim()}</span>`).join('')}</div>
+                    <span class="info-label">Servicios: (Toca uno para filtrar)</span>
+                    <div class="badge-container">${p.servicios.split(',').map(s => {
+                        const sClean = s.trim();
+                        const activeClass = selectedService === sClean ? 'active' : '';
+                        return `<span class="badge ${activeClass}" onclick="setServiceFilter('${sClean}')">${sClean}</span>`;
+                    }).join('')}</div>
                 </div>
-                <div class="info-item">
-                    <span class="info-label"><i class="fa-solid fa-clock"></i> Horarios de atención:</span>
-                    ${p.horarios}
-                </div>
-                <div class="info-item">
-                    <span class="info-label"><i class="fa-solid fa-phone"></i> Contacto:</span>
-                    ${p.contacto}
-                </div>
+                <div class="info-item"><span class="info-label"><i class="fa-solid fa-clock"></i> Horarios:</span>${p.horarios}</div>
+                <div class="info-item"><span class="info-label"><i class="fa-solid fa-phone"></i> Contacto:</span>${p.contacto}</div>
             `;
             listDiv.appendChild(card);
         });
-        window.scrollTo(0,0);
     }
+
+    function setServiceFilter(service) {
+        if (selectedService === service) {
+            clearServiceFilter();
+        } else {
+            selectedService = service;
+            document.getElementById('activeFilterName').innerText = service;
+            document.getElementById('filterIndicator').style.display = "block";
+            applyFilters();
+        }
+    }
+
+    function clearServiceFilter() {
+        selectedService = null;
+        document.getElementById('filterIndicator').style.display = "none";
+        applyFilters();
+    }
+
     function goHome() {
         document.getElementById('home-screen').classList.remove('hidden');
         document.getElementById('zone-screen').classList.add('hidden');
