@@ -27,9 +27,16 @@
         .badge.active { background: var(--rojo); color: white; border-color: var(--rojo); }
         
         /* Estilos de links de contacto */
-        .contact-link { display: inline-flex; align-items: center; gap: 8px; background: #f0f7ff; color: var(--azul); padding: 8px 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; margin-top: 5px; border: 1px solid #cce0f5; }
-        .contact-link i { font-size: 1.1rem; }
+        .contact-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
+        .contact-link { display: inline-flex; align-items: center; gap: 6px; background: #f0f7ff; color: var(--azul); padding: 8px 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.85rem; border: 1px solid #cce0f5; }
+        .contact-link i { font-size: 1rem; }
         .contact-link.wa { color: #25d366; background: #e8f9ee; border-color: #c7e9d2; }
+
+        /* Botón y lista para detalles desplegables */
+        .details-btn { background: #eef2f7; color: var(--azul); border: 1px dashed var(--azul); padding: 8px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .details-content { display: none; margin-top: 10px; background: #fafafa; padding: 10px 14px; border-radius: 8px; border: 1px solid #eee; font-size: 0.85rem; }
+        .details-content ul { margin: 0; padding-left: 18px; }
+        .details-content li { margin-bottom: 5px; color: #444; }
 
         .social { margin-top: 30px; display: flex; justify-content: center; gap: 30px; }
         .social a { color: var(--azul); font-size: 2.2rem; text-decoration: none; }
@@ -85,7 +92,20 @@
         { zona: "San Isidro", parroquia: "Sagrado Corazón (Boulogne)", servicios: "Atención inmediata, Ropero, Alimentos", horarios: "Mar 15-17 / Jue 10-13", contacto: "011 4766-3555" },
         { zona: "Tigre", parroquia: "San Marcelo", servicios: "Atención inmediata, Ropero, Escucha, Atención a Mayores", horarios: "Lunes 9 a 11 hs", contacto: "1131815111, 1158531785" },
         { zona: "San Fernando", parroquia: "Ntra Sra de La Guardia", servicios: "Atención inmediata, Ropero, Cena (Viernes)", horarios: "Lu, Ma y Ju 9 a 11.30", contacto: "11 3958 9805" },
-        { zona: "San Isidro", parroquia: "Ntra Sra de Lourdes (Beccar)", servicios: "Atención inmediata, Ropero, Desayuno, Viandas", horarios: "Lu, Mi, Ju (Mañana)", contacto: "1169470378" },
+        { 
+            zona: "San Isidro", 
+            parroquia: "Ntra Sra de Lourdes (Beccar)", 
+            servicios: "Atención inmediata, Ropero, Desayuno, Viandas", 
+            horarios: "Lu, Mi, Ju, Sá (Ver detalle abajo)", 
+            contacto: "1169470378",
+            detalles: [
+                "Martes: 9 a 11 hs",
+                "Miércoles: 10 a 11.30 hs",
+                "Miércoles: Viandas en Uruguay e Int. Becco",
+                "Jueves: Ayuda inmediata y Feria 9.30 a 12 hs",
+                "Sábado: 9 hs Desayunador"
+            ]
+        },
         { zona: "San Fernando", parroquia: "Ntra Sra de Aranzazu", servicios: "Desayuno, Almuerzo, Duchas, Ropería, Talleres, Atención a Mayores", horarios: "Lunes a Sábado 8.30 a 12hs", contacto: "4547-1867" },
         { zona: "Vicente Lopez", parroquia: "Virgen del Carmen", servicios: "Atención inmediata, Ropero, Desayuno, Talleres, Atención a Mayores", horarios: "Martes y Jueves 9 a 12", contacto: "1150110453" },
         { zona: "Tigre", parroquia: "Ntra Sra de Luján", servicios: "Escucha, Farmacia, Ortopedia, Cena Solidaria, Atención a Mayores", horarios: "Jueves 16.30 a 18.30", contacto: "011 5099 5081" },
@@ -134,9 +154,24 @@
             return matchesZone && matchesSearch && matchesService;
         });
 
-        filtered.forEach(p => {
+        filtered.forEach((p, idx) => {
             const card = document.createElement('div');
             card.className = 'parish-card';
+
+            let detailsHTML = '';
+            if (p.detalles && p.detalles.length > 0) {
+                const detailsList = p.detalles.map(d => `<li>${d}</li>`).join('');
+                detailsHTML = `
+                    <button class="details-btn" onclick="toggleDetails(${idx})">
+                        <span><i class="fa-solid fa-calendar-days"></i> Ver desglose de días y actividades</span>
+                        <i class="fa-solid fa-chevron-down" id="chevron-${idx}"></i>
+                    </button>
+                    <div class="details-content" id="details-${idx}">
+                        <ul>${detailsList}</ul>
+                    </div>
+                `;
+            }
+
             card.innerHTML = `
                 <h3>${p.parroquia}</h3>
                 <div class="info-item">
@@ -146,37 +181,47 @@
                         return `<span class="badge ${selectedService === sClean ? 'active' : ''}" onclick="setServiceFilter('${sClean}')">${sClean}</span>`;
                     }).join('')}</div>
                 </div>
-                <div class="info-item"><span class="info-label"><i class="fa-solid fa-clock"></i> Horarios:</span>${p.horarios}</div>
-                <div class="info-item">
+                <div class="info-item"><span class="info-label"><i class="fa-solid fa-clock"></i> Horarios:</span> ${p.horarios}</div>
+                ${detailsHTML}
+                <div class="info-item" style="margin-top: 15px;">
                     <span class="info-label"><i class="fa-solid fa-address-book"></i> Contacto:</span>
-                    ${renderContactLinks(p.contacto)}
+                    <div class="contact-container">${renderContactLinks(p.contacto)}</div>
                 </div>
             `;
             listDiv.appendChild(card);
         });
     }
 
+    function toggleDetails(index) {
+        const detailsEl = document.getElementById(`details-${index}`);
+        const chevronEl = document.getElementById(`chevron-${index}`);
+        if (detailsEl.style.display === "block") {
+            detailsEl.style.display = "none";
+            chevronEl.className = "fa-solid fa-chevron-down";
+        } else {
+            detailsEl.style.display = "block";
+            chevronEl.className = "fa-solid fa-chevron-up";
+        }
+    }
+
     function renderContactLinks(contactoStr) {
-        // Separa si hay varios números (por coma o "y")
         const numbers = contactoStr.split(/[,y]/);
         return numbers.map(num => {
             const cleanNum = num.trim().replace(/[^0-9+]/g, '');
-            // Lógica para detectar si es celular (Argentina)
-            // Si empieza con 11, 15, o 549, o tiene más de 9 dígitos después del 011
+            if (!cleanNum) return `<span>${num}</span>`;
+
             const isMobile = cleanNum.includes("11") || cleanNum.includes("15") || cleanNum.startsWith("549");
             
             if (isMobile) {
-                // Formatear para WhatsApp (549 + área + número)
                 let waNum = cleanNum;
                 if (!waNum.startsWith("549")) {
                     if (waNum.startsWith("0")) waNum = waNum.substring(1);
                     if (waNum.startsWith("15")) waNum = "11" + waNum.substring(2);
                     waNum = "549" + waNum;
                 }
-                return `<a href="https://wa.me/${waNum}" class="contact-link wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>`;
+                return `<a href="https://wa.me/${waNum}" class="contact-link wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp (${cleanNum})</a>`;
             } else {
-                // Formatear para Llamada Fija
-                return `<a href="tel:${cleanNum}" class="contact-link"><i class="fa-solid fa-phone"></i> Llamar</a>`;
+                return `<a href="tel:${cleanNum}" class="contact-link"><i class="fa-solid fa-phone"></i> Llamar (${cleanNum})</a>`;
             }
         }).join(' ');
     }
