@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -105,13 +106,13 @@ const data = [
     ]
 },
 
-{ zona:"San Fernando", parroquia:"Ntra Sra de Aranzazu", servicios:"Desayuno, Almuerzo, Duchas, Ropería, Talleres, Atención a Mayores", horarios:"Lunes a Sábado 8.30 a 12hs", contacto:"4547-1867" },
+{ zona:"San Fernando", parroquia:"Ntra Sra de Aranzazu", servicios:"Atención inmediata, Ropero, Desayuno, Almuerzo, Duchas, Viandas, Talleres, Atención a Mayores", horarios:"Lunes a sábado de 8.30 a 12 hs y de 16.30 a 18.30 hs", contacto:"4547-1867, 1158491433", detalles:["Jueves por la tarde: taller Santa Ana de tejido y taller cognitivo", "Martes a las 17 hs: coro", "Un sábado al mes: encuentro de adultos mayores con juegos y merienda (horario no indicado)"] },
 { zona:"Vicente Lopez", parroquia:"Virgen del Carmen", servicios:"Atención inmediata, Ropero, Desayuno, Talleres, Atención a Mayores", horarios:"Martes y Jueves 9 a 12", contacto:"1150110453" },
-{ zona:"Tigre", parroquia:"Ntra Sra de Luján", servicios:"Escucha, Farmacia, Ortopedia, Cena Solidaria, Atención a Mayores", horarios:"Jueves 16.30 a 18.30", contacto:"011 5099 5081" },
+{ zona:"Tigre", parroquia:"Ntra Sra de Luján", servicios:"Atención inmediata, Ropero, Escucha, Farmacia, Ortopedia, Merienda, Cena Solidaria, Acompañamiento en duelo, Atención a Mayores", horarios:"Jueves de 17 a 18.30 hs", contacto:"011 5099 5081", detalles:["Martes de 14.30 a 17 hs: encuentro de abuelos y adultos mayores", "Jueves de 17 a 18.30 hs: atención de Cáritas"] },
 { zona:"San Fernando", parroquia:"Santa Teresita (Virreyes)", servicios:"Atención inmediata, Ropero, Mercadería, Atención a Mayores", horarios:"Ma y Ju 14-17 / 2do Sáb mes", contacto:"1164842686" },
 { zona:"San Fernando", parroquia:"Ntra Sra del Carmen", servicios:"Atención inmediata, Ropero, Atención a Mayores", horarios:"Lunes 16 a 18.30", contacto:"1168998986" },
 { zona:"Tigre", parroquia:"Purísima Concepción", servicios:"Atención inmediata, Ropero, Duchas, Medicamentos, Bolsa Trabajo, Atención a Mayores", horarios:"Lunes y Miércoles 9 a 12h", contacto:"1154195064" },
-{ zona:"San Isidro", parroquia:"Espíritu Santo", servicios:"Escucha, Bolsa de Trabajo, Atención a Mayores", horarios:"Miércoles 10 a 12 hs", contacto:"1144952012" },
+{ zona:"San Isidro", parroquia:"Espíritu Santo", servicios:"Atención inmediata, Escucha, Bolsa de Trabajo, Atención a Mayores", horarios:"Martes y miércoles (atención según necesidad)", contacto:"1144952012", detalles:["Martes y miércoles: atención de necesidades específicas (sin horario indicado)", "Jueves a las 15 hs: encuentro para adultos mayores", "Primer viernes de cada mes: té de adultos mayores (sin horario indicado)"] },
 { zona:"Vicente Lopez", parroquia:"La Asunción de la Virgen", servicios:"Viandas, Medicamentos, Merienda, Atención a Mayores", horarios:"Martes 16 a 19 hs", contacto:"45136735" },
 { zona:"San Fernando", parroquia:"Ntra Sra de Itatí", servicios:"Atención inmediata, Ropero, Escucha, Mercadería, Atención a Mayores", horarios:"Martes 9 a 12 (y urgencias)", contacto:"1158767806" },
 { zona:"Tigre", parroquia:"San Juan Bautista", servicios:"Atención inmediata, Ropero, Desayuno, Escucha, Atención a Mayores", horarios:"Viernes 8.30 a 12.30 / Lun roperito", contacto:"1134122901" },
@@ -143,9 +144,13 @@ const data = [
         "Miércoles: Atención de 9 a 11 hs",
         "Miércoles: Banco de ortopedia y farmacia de 16.30 a 18 hs",
         "Jueves: Atención de 9 a 11 hs",
-             "Primer viernes de cada mes: Feria de 10 a 14 hs"
+        "Primer viernes de cada mes: Feria de 10 a 14 hs"
     ]
-}
+},
+
+{ zona:"Vicente Lopez", parroquia:"Santa María Reina", servicios:"Ropero", horarios:"Martes y jueves de 16.30 a 18 hs", contacto:"" },
+{ zona:"Vicente Lopez", parroquia:"Ntra Sra de Fátima (Villa Martelli)", servicios:"Atención inmediata, Ropero, Alimentos, Atención a Mayores", horarios:"Martes y jueves de 17 a 18 hs", contacto:"", detalles:["Martes y jueves de 17 a 18 hs: atención, alimentos y ropa", "Viernes de 16 a 18 hs: reunión de adultos mayores"] },
+{ zona:"Tigre", parroquia:"María de Guadalupe", servicios:"Atención inmediata, Ropero, Alimentos, Almuerzo, Duchas, Atención a Mayores", horarios:"Martes de 8 a 11 hs; jueves de 15 a 18 hs; sábados de 9 a 12 hs (feria)", contacto:"1135194222", detalles:["Martes de 8 a 11 hs: atención de Cáritas", "Martes y jueves de 17 a 19 hs: Casa del Joven, comida y duchas para personas en situación de calle", "Jueves de 15 a 18 hs: atención de Cáritas", "Viernes a las 12 hs: comedor de adultos mayores", "Sábados de 9 a 12 hs: feria", "Mensualmente: entrega de bolsones de alimentos (sin día indicado)"] }
 ];
 
 function showZone(zoneName) {
@@ -271,4 +276,6 @@ function goHome() {
 }
 </script>
 </body>
+</html>
+
 </html>
